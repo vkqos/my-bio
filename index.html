@@ -70,15 +70,27 @@
             }
         }
 
-        .avatar {
-            width: 100px;
-            height: 100px;
+        .avatar-container {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
+            margin: 0 auto 20px;
+            padding: 5px;
             background: linear-gradient(45deg, #ff6b6b, #ffa726, #ffee58, #4caf50, #2196f3, #9c27b0);
             background-size: 400% 400%;
             animation: gradient 8s ease infinite;
-            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
             border: 3px solid rgba(255, 255, 255, 0.3);
+            background: #333; /* Запасной фон если фото не загрузится */
         }
 
         .name {
@@ -148,7 +160,11 @@
 </head>
 <body>
     <div class="bio-container floating">
-        <div class="avatar pulse"></div>
+        <!-- ЗДЕСЬ ЗАМЕНИ НА СВОЮ АВАТАРКУ -->
+        <div class="avatar-container pulse">
+            <img src="avatar.jpg" class="avatar-img" alt="vkqos">
+        </div>
+        
         <h1 class="name">vkqos</h1>
         <div class="info">Возраст: <span class="highlight" id="age">1</span></div>
         <div class="info">Город: <span class="highlight question-mark">?</span></div>
