@@ -90,7 +90,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid rgba(255, 255, 255, 0.3);
-            background: #333; /* Запасной фон если фото не загрузится */
+            background: #333;
         }
 
         .name {
@@ -160,9 +160,8 @@
 </head>
 <body>
     <div class="bio-container floating">
-        <!-- ЗДЕСЬ ЗАМЕНИ НА СВОЮ АВАТАРКУ -->
         <div class="avatar-container pulse">
-            <img src="https://github.com/vkqos/my-bio/blob/main/avatar.jpg" class="avatar-img" alt="vkqos">
+            <img src="https://raw.githubusercontent.com/vkqos/my-bio/main/avatar.jpg" class="avatar-img" alt="vkqos">
         </div>
         
         <h1 class="name">vkqos</h1>
@@ -172,7 +171,6 @@
     </div>
 
     <script>
-        // Быстрая смена возраста от 1 до 20
         const ageElement = document.getElementById('age');
         let currentAge = 1;
         let increasing = true;
@@ -192,7 +190,6 @@
             ageElement.textContent = currentAge;
         }, 100);
 
-        // Добавляем частицы для красоты
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.querySelector('body');
             
