@@ -654,7 +654,7 @@
         
         themeButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const theme = button.getAttribute('data--theme');
+                const theme = button.getAttribute('data-theme');
                 
                 // Обновляем активную кнопку
                 themeButtons.forEach(btn => btn.classList.remove('active'));
