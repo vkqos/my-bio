@@ -654,4 +654,19 @@
         
         themeButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const theme = button.getAttribute('data-
+                const theme = button.getAttribute('data--theme');
+                
+                // Обновляем активную кнопку
+                themeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Меняем тему
+                body.className = `theme-${theme}`;
+                
+                // Обновляем индикатор темы
+                themeIndicator.textContent = `${themeNames[theme]} тема активирована`;
+            });
+        });
+    </script>
+</body>
+</html>
