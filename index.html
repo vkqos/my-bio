@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -13,41 +14,13 @@
 
         body {
             font-family: 'Courier New', monospace;
+            background: #0a0000;
+            color: #ff0000;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            transition: all 1s ease;
-        }
-
-        /* Общие стили для всех тем */
-        .theme-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            gap: 10px;
-        }
-
-        .theme-btn {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .theme-btn:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-        }
-
-        .theme-btn.active {
-            transform: scale(1.2);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
         }
 
         /* Эффект мерцания как на старом мониторе */
@@ -83,14 +56,15 @@
             left: 0;
             width: 100%;
             height: 100%;
+            background: #0a0000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 1000;
             font-family: 'Courier New', monospace;
-            text-shadow: 0 0 5px currentColor;
-            transition: all 1s ease;
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
         }
 
         .loading-text {
@@ -101,7 +75,7 @@
 
         .typing {
             overflow: hidden;
-            border-right: 2px solid;
+            border-right: 2px solid #ff0000;
             white-space: nowrap;
             margin: 0 auto;
             animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
@@ -114,22 +88,23 @@
 
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: currentColor }
+            50% { border-color: #ff0000 }
         }
 
         .progress-bar {
             width: 300px;
             height: 20px;
-            border: 1px solid;
+            background: #300000;
+            border: 1px solid #ff0000;
             margin-top: 20px;
             overflow: hidden;
-            box-shadow: 0 0 10px currentColor;
-            transition: all 1s ease;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
         .progress {
             height: 100%;
             width: 0%;
+            background: linear-gradient(90deg, #800000, #ff0000);
             animation: progress 5s linear forwards;
         }
 
@@ -140,13 +115,14 @@
 
         /* Основной контейнер */
         .bio-container {
+            background: rgba(20, 0, 0, 0.8);
             backdrop-filter: blur(5px);
             border-radius: 10px;
             padding: 40px;
             text-align: center;
-            box-shadow: 0 0 30px, 
-                        inset 0 0 20px;
-            border: 1px solid;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.7), 
+                        inset 0 0 20px rgba(139, 0, 0, 0.5);
+            border: 1px solid #8b0000;
             min-width: 300px;
             position: relative;
             overflow: hidden;
@@ -160,12 +136,13 @@
             transform: scale(1);
         }
 
-        /* Эффект капель/частиц */
-        .drip {
+        /* Эффект капель крови */
+        .blood-drip {
             position: absolute;
             top: -50px;
             width: 3px;
             height: 50px;
+            background: linear-gradient(to bottom, transparent, #ff0000);
             animation: drip 5s infinite;
         }
 
@@ -182,12 +159,13 @@
             border-radius: 50%;
             margin: 0 auto 20px;
             padding: 5px;
+            background: linear-gradient(45deg, #300000, #8b0000, #ff0000, #8b0000);
             background-size: 400% 400%;
             animation: gradient 8s ease infinite;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
         }
 
         @keyframes gradient {
@@ -207,33 +185,35 @@
             height: 110px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid;
-            transition: filter 1s ease;
+            border: 3px solid rgba(139, 0, 0, 0.5);
+            background: #300000;
+            filter: sepia(100%) hue-rotate(-30deg) saturate(200%);
         }
 
         .name {
             font-size: 2em;
             font-weight: bold;
             margin-bottom: 10px;
+            background: linear-gradient(45deg, #8b0000, #ff0000, #8b0000);
             background-size: 200% 200%;
             animation: gradient 3s ease infinite;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 10px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
         .info {
             font-size: 1.2em;
             margin: 10px 0;
             opacity: 0.9;
-            text-shadow: 0 0 5px;
-            transition: transform 0.3s;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
         }
 
         .highlight {
+            color: #ff3333;
             font-weight: bold;
-            text-shadow: 0 0 5px;
+            text-shadow: 0 0 5px #ff0000;
         }
 
         .pulse {
@@ -243,15 +223,15 @@
         @keyframes pulse {
             0% {
                 transform: scale(1);
-                box-shadow: 0 0 20px;
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             }
             50% {
                 transform: scale(1.05);
-                box-shadow: 0 0 30px;
+                box-shadow: 0 0 30px rgba(255, 0, 0, 0.9);
             }
             100% {
                 transform: scale(1);
-                box-shadow: 0 0 20px;
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             }
         }
 
@@ -276,259 +256,40 @@
             50% { opacity: 0.3; }
         }
 
-        .flow-text {
+        .blood-text {
             position: relative;
             display: inline-block;
         }
 
-        .flow-text::after {
+        .blood-text::after {
             content: '';
             position: absolute;
             bottom: -5px;
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, currentColor, transparent);
-            animation: flow 3s infinite;
+            background: linear-gradient(90deg, transparent, #ff0000, transparent);
+            animation: bloodFlow 3s infinite;
         }
 
-        @keyframes flow {
+        @keyframes bloodFlow {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
 
-        /* Частицы */
-        .particle {
+        /* Частицы крови */
+        .blood-particle {
             position: absolute;
             width: 4px;
             height: 4px;
+            background: #ff0000;
             border-radius: 50%;
             pointer-events: none;
             z-index: -1;
         }
-
-        /* Тема 1: Кровавая */
-        .theme-blood {
-            background: #0a0000;
-            color: #ff0000;
-        }
-
-        .theme-blood .loading-screen {
-            background: #0a0000;
-            color: #ff0000;
-        }
-
-        .theme-blood .progress-bar {
-            background: #300000;
-        }
-
-        .theme-blood .progress {
-            background: linear-gradient(90deg, #800000, #ff0000);
-        }
-
-        .theme-blood .bio-container {
-            background: rgba(20, 0, 0, 0.8);
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.7), 
-                        inset 0 0 20px rgba(139, 0, 0, 0.5);
-            border-color: #8b0000;
-        }
-
-        .theme-blood .drip {
-            background: linear-gradient(to bottom, transparent, #ff0000);
-        }
-
-        .theme-blood .avatar-container {
-            background: linear-gradient(45deg, #300000, #8b0000, #ff0000, #8b0000);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-        }
-
-        .theme-blood .avatar-img {
-            border-color: rgba(139, 0, 0, 0.5);
-            background: #300000;
-            filter: sepia(100%) hue-rotate(-30deg) saturate(200%);
-        }
-
-        .theme-blood .name {
-            background: linear-gradient(45deg, #8b0000, #ff0000, #8b0000);
-        }
-
-        .theme-blood .highlight {
-            color: #ff3333;
-        }
-
-        .theme-blood .particle {
-            background: #ff0000;
-        }
-
-        /* Тема 2: Зимняя */
-        .theme-winter {
-            background: #0a0f1a;
-            color: #b3e0ff;
-        }
-
-        .theme-winter .loading-screen {
-            background: #0a0f1a;
-            color: #b3e0ff;
-        }
-
-        .theme-winter .progress-bar {
-            background: #1a2b3c;
-        }
-
-        .theme-winter .progress {
-            background: linear-gradient(90deg, #2c5282, #63b3ed);
-        }
-
-        .theme-winter .bio-container {
-            background: rgba(15, 30, 45, 0.8);
-            box-shadow: 0 0 30px rgba(99, 179, 237, 0.7), 
-                        inset 0 0 20px rgba(44, 82, 130, 0.5);
-            border-color: #2c5282;
-        }
-
-        .theme-winter .drip {
-            background: linear-gradient(to bottom, transparent, #b3e0ff);
-        }
-
-        .theme-winter .avatar-container {
-            background: linear-gradient(45deg, #1a2b3c, #2c5282, #63b3ed, #2c5282);
-            box-shadow: 0 0 20px rgba(99, 179, 237, 0.7);
-        }
-
-        .theme-winter .avatar-img {
-            border-color: rgba(44, 82, 130, 0.5);
-            background: #1a2b3c;
-            filter: sepia(30%) hue-rotate(180deg) saturate(150%);
-        }
-
-        .theme-winter .name {
-            background: linear-gradient(45deg, #2c5282, #63b3ed, #2c5282);
-        }
-
-        .theme-winter .highlight {
-            color: #63b3ed;
-        }
-
-        .theme-winter .particle {
-            background: #b3e0ff;
-        }
-
-        /* Тема 3: Киберпанк */
-        .theme-cyber {
-            background: #0a0014;
-            color: #ff00ff;
-        }
-
-        .theme-cyber .loading-screen {
-            background: #0a0014;
-            color: #ff00ff;
-        }
-
-        .theme-cyber .progress-bar {
-            background: #1a0030;
-        }
-
-        .theme-cyber .progress {
-            background: linear-gradient(90deg, #4b0082, #ff00ff);
-        }
-
-        .theme-cyber .bio-container {
-            background: rgba(20, 0, 40, 0.8);
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.7), 
-                        inset 0 0 20px rgba(75, 0, 130, 0.5);
-            border-color: #4b0082;
-        }
-
-        .theme-cyber .drip {
-            background: linear-gradient(to bottom, transparent, #ff00ff);
-        }
-
-        .theme-cyber .avatar-container {
-            background: linear-gradient(45deg, #1a0030, #4b0082, #ff00ff, #4b0082);
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
-        }
-
-        .theme-cyber .avatar-img {
-            border-color: rgba(75, 0, 130, 0.5);
-            background: #1a0030;
-            filter: sepia(100%) hue-rotate(270deg) saturate(200%);
-        }
-
-        .theme-cyber .name {
-            background: linear-gradient(45deg, #4b0082, #ff00ff, #4b0082);
-        }
-
-        .theme-cyber .highlight {
-            color: #ff66ff;
-        }
-
-        .theme-cyber .particle {
-            background: #ff00ff;
-        }
-
-        /* Тема 4: Космическая */
-        .theme-space {
-            background: #000814;
-            color: #00ffff;
-        }
-
-        .theme-space .loading-screen {
-            background: #000814;
-            color: #00ffff;
-        }
-
-        .theme-space .progress-bar {
-            background: #001a33;
-        }
-
-        .theme-space .progress {
-            background: linear-gradient(90deg, #004466, #00ffff);
-        }
-
-        .theme-space .bio-container {
-            background: rgba(0, 20, 40, 0.8);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7), 
-                        inset 0 0 20px rgba(0, 68, 102, 0.5);
-            border-color: #004466;
-        }
-
-        .theme-space .drip {
-            background: linear-gradient(to bottom, transparent, #00ffff);
-        }
-
-        .theme-space .avatar-container {
-            background: linear-gradient(45deg, #001a33, #004466, #00ffff, #004466);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
-        }
-
-        .theme-space .avatar-img {
-            border-color: rgba(0, 68, 102, 0.5);
-            background: #001a33;
-            filter: sepia(60%) hue-rotate(150deg) saturate(200%);
-        }
-
-        .theme-space .name {
-            background: linear-gradient(45deg, #004466, #00ffff, #004466);
-        }
-
-        .theme-space .highlight {
-            color: #66ffff;
-        }
-
-        .theme-space .particle {
-            background: #00ffff;
-        }
     </style>
 </head>
-<body class="theme-blood">
-    <!-- Переключатель тем -->
-    <div class="theme-switcher">
-        <div class="theme-btn active" data-theme="blood" style="background: #ff0000;"></div>
-        <div class="theme-btn" data-theme="winter" style="background: #b3e0ff;"></div>
-        <div class="theme-btn" data-theme="cyber" style="background: #ff00ff;"></div>
-        <div class="theme-btn" data-theme="space" style="background: #00ffff;"></div>
-    </div>
-
+<body>
     <!-- Экран загрузки -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-text">
@@ -544,25 +305,25 @@
 
     <!-- Основной контент -->
     <div class="bio-container" id="bioContainer">
-        <!-- Случайные капли/частицы -->
-        <div class="drip" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="drip" style="left: 30%; animation-delay: 1.5s;"></div>
-        <div class="drip" style="left: 50%; animation-delay: 3s;"></div>
-        <div class="drip" style="left: 70%; animation-delay: 4.5s;"></div>
-        <div class="drip" style="left: 90%; animation-delay: 6s;"></div>
+        <!-- Случайные капли крови -->
+        <div class="blood-drip" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="blood-drip" style="left: 30%; animation-delay: 1.5s;"></div>
+        <div class="blood-drip" style="left: 50%; animation-delay: 3s;"></div>
+        <div class="blood-drip" style="left: 70%; animation-delay: 4.5s;"></div>
+        <div class="blood-drip" style="left: 90%; animation-delay: 6s;"></div>
         
         <div class="avatar-container heartbeat">
             <img src="https://raw.githubusercontent.com/vkqos/my-bio/main/avatar.jpg?v=1" class="avatar-img" alt="vkqos" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEwIiBoZWlnaHQ9IjExMCIgdmlld0JveD0iMCAwIDExMCAxMTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMTAiIGhlaWdodD0iMTEwIiByeD0iNTUiIGZpbGw9IiMzMDAwMDAiLz4KPHBhdGggZD0iTTU1IDMwQzYxLjY3ODggMzAgNjcgMzUuMzIxMiA2NyA0MkM2NyA0OC42Nzg4IDYxLjY3ODggNTQgNTUgNTRDNDguMzIxMiA1NCA0MyA0OC42Nzg4IDQzIDQyQzQzIDM1LjMyMTIgNDguMzIxMiAzMCA1NSAzMFoiIGZpbGw9IiM4QjAwMDAiLz4KPHBhdGggZD0iTTQwIDcwQzQwIDYzLjM3MTcgNDcuMzcxNyA1NiA1NCA1NkM2MC42MjgzIDU2IDY4IDYzLjM3MTcgNjggNzBWNzVDNjggODEuNjI4MyA2MC42MjgzIDg5IDU0IDg5QzQ3LjM3MTcgODkgNDAgODEuNjI4MyA0MCA3NVY3MFoiIGZpbGw9IiM4QjAwMDAiLz4KPC9zdmc+'">
         </div>
         
-        <h1 class="name flow-text">vkqos</h1>
+        <h1 class="name blood-text">vkqos</h1>
         <div class="info">Возраст: <span class="highlight" id="age">1</span></div>
         <div class="info">Город: <span class="highlight question-mark">?</span></div>
         <div class="info">Хобби: <span class="highlight">программирование</span></div>
         <div class="info">Любимые исполнители: <span class="highlight">Sematary, Matey</span></div>
         <div class="info">ТГ: <span class="highlight pulse">@vkqos</span></div>
         <div class="info" style="margin-top: 20px; font-size: 0.9em; opacity: 0.7;">
-            <span class="highlight" id="theme-indicator">Кровавая тема активирована</span>
+            <span class="highlight">Кровавая тема активирована</span>
         </div>
     </div>
 
@@ -593,13 +354,13 @@
             ageElement.textContent = currentAge;
         }, 100);
 
-        // Создание частиц
+        // Создание частиц крови
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.querySelector('body');
             
-            function createParticle() {
+            function createBloodParticle() {
                 const particle = document.createElement('div');
-                particle.classList.add('particle');
+                particle.classList.add('blood-particle');
                 particle.style.left = Math.random() * 100 + 'vw';
                 particle.style.top = '-10px';
                 particle.style.opacity = Math.random() * 0.7 + 0.3;
@@ -620,11 +381,11 @@
                 };
             }
 
-            setInterval(createParticle, 500);
+            setInterval(createBloodParticle, 500);
             
             // Создаем начальные частицы
             for (let i = 0; i < 20; i++) {
-                setTimeout(createParticle, i * 100);
+                setTimeout(createBloodParticle, i * 100);
             }
         });
 
@@ -639,19 +400,6 @@
                 item.style.transform = 'scale(1)';
             });
         });
-
-        // Переключение тем
-        const themeButtons = document.querySelectorAll('.theme-btn');
-        const body = document.querySelector('body');
-        const themeIndicator = document.getElementById('theme-indicator');
-        
-        const themeNames = {
-            'blood': 'Кровавая',
-            'winter': 'Зимняя',
-            'cyber': 'Киберпанк',
-            'space': 'Космическая'
-        };
-        
-        themeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const theme = button.getAttribute('data-
+    </script>
+</body>
+</html>
