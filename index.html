@@ -12,16 +12,159 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            font-family: 'Courier New', monospace;
+            background: #0a0000;
+            color: #ff0000;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
             overflow: hidden;
+        }
+
+        /* Эффект мерцания как на старом мониторе */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 100;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: 0.9; }
+        }
+
+        /* Экран загрузки */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            font-family: 'Courier New', monospace;
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        .loading-text {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .typing {
+            overflow: hidden;
+            border-right: 2px solid #ff0000;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #ff0000 }
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 20px;
+            background: #300000;
+            border: 1px solid #ff0000;
+            margin-top: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #800000, #ff0000);
+            animation: progress 5s linear forwards;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Основной контейнер */
+        .bio-container {
+            background: rgba(20, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.7), 
+                        inset 0 0 20px rgba(139, 0, 0, 0.5);
+            border: 1px solid #8b0000;
+            min-width: 300px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        .bio-container.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Эффект капель крови */
+        .blood-drip {
+            position: absolute;
+            top: -50px;
+            width: 3px;
+            height: 50px;
+            background: linear-gradient(to bottom, transparent, #ff0000);
+            animation: drip 5s infinite;
+        }
+
+        @keyframes drip {
+            0% { transform: translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .avatar-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            padding: 5px;
+            background: linear-gradient(45deg, #300000, #8b0000, #ff0000, #8b0000);
+            background-size: 400% 400%;
+            animation: gradient 8s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
         }
 
         @keyframes gradient {
@@ -36,116 +179,71 @@
             }
         }
 
-        .bio-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            min-width: 300px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bio-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: shine 3s infinite;
-            transform: rotate(45deg);
-        }
-
-        @keyframes shine {
-            0% {
-                transform: rotate(45deg) translateX(-100%);
-            }
-            100% {
-                transform: rotate(45deg) translateX(100%);
-            }
-        }
-
-        .avatar-container {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            padding: 5px;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 8s ease infinite;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
         .avatar-img {
             width: 110px;
             height: 110px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            background: #333;
+            border: 3px solid rgba(139, 0, 0, 0.5);
+            background: #300000;
+            filter: sepia(100%) hue-rotate(-30deg) saturate(200%);
         }
 
         .name {
             font-size: 2em;
             font-weight: bold;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, #ff6b6b, #ffa726, #ffee58, #4caf50, #2196f3, #9c27b0);
-            background-size: 400% 400%;
-            animation: gradient 6s ease infinite;
+            background: linear-gradient(45deg, #8b0000, #ff0000, #8b0000);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
         .info {
             font-size: 1.2em;
             margin: 10px 0;
             opacity: 0.9;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
         }
 
         .highlight {
-            color: #ffeb3b;
+            color: #ff3333;
             font-weight: bold;
+            text-shadow: 0 0 5px #ff0000;
         }
 
         .pulse {
-            animation: pulse 2s infinite;
+            animation: pulse 3s infinite;
         }
 
         @keyframes pulse {
             0% {
                 transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             }
             50% {
                 transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(255, 0, 0, 0.9);
             }
             100% {
                 transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             }
         }
 
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        .heartbeat {
+            animation: heartbeat 2s infinite;
         }
 
-        @keyframes floating {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         .question-mark {
@@ -156,23 +254,86 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.3; }
         }
+
+        .blood-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .blood-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff0000, transparent);
+            animation: bloodFlow 3s infinite;
+        }
+
+        @keyframes bloodFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Частицы крови */
+        .blood-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff0000;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
-    <div class="bio-container floating">
-        <div class="avatar-container pulse">
-            <img src="https://raw.githubusercontent.com/vkqos/my-bio/main/avatar.jpg?v=1" class="avatar-img" alt="vkqos">
+    <!-- Экран загрузки -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-text">
+            <div class="typing">initialization program...</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <div class="loading-text" style="margin-top: 20px; font-size: 1em;">
+            Загрузка данных пользователя...
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="bio-container" id="bioContainer">
+        <!-- Случайные капли крови -->
+        <div class="blood-drip" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="blood-drip" style="left: 30%; animation-delay: 1.5s;"></div>
+        <div class="blood-drip" style="left: 50%; animation-delay: 3s;"></div>
+        <div class="blood-drip" style="left: 70%; animation-delay: 4.5s;"></div>
+        <div class="blood-drip" style="left: 90%; animation-delay: 6s;"></div>
+        
+        <div class="avatar-container heartbeat">
+            <img src="https://raw.githubusercontent.com/vkqos/my-bio/main/avatar.jpg?v=1" class="avatar-img" alt="vkqos" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEwIiBoZWlnaHQ9IjExMCIgdmlld0JveD0iMCAwIDExMCAxMTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMTAiIGhlaWdodD0iMTEwIiByeD0iNTUiIGZpbGw9IiMzMDAwMDAiLz4KPHBhdGggZD0iTTU1IDMwQzYxLjY3ODggMzAgNjcgMzUuMzIxMiA2NyA0MkM2NyA0OC42Nzg4IDYxLjY3ODggNTQgNTUgNTRDNDguMzIxMiA1NCA0MyA0OC42Nzg4IDQzIDQyQzQzIDM1LjMyMTIgNDguMzIxMiAzMCA1NSAzMFoiIGZpbGw9IiM4QjAwMDAiLz4KPHBhdGggZD0iTTQwIDcwQzQwIDYzLjM3MTcgNDcuMzcxNyA1NiA1NCA1NkM2MC42MjgzIDU2IDY4IDYzLjM3MTcgNjggNzBWNzVDNjggODEuNjI4MyA2MC42MjgzIDg5IDU0IDg5QzQ3LjM3MTcgODkgNDAgODEuNjI4MyA0MCA3NVY3MFoiIGZpbGw9IiM4QjAwMDAiLz4KPC9zdmc+'">
         </div>
         
-        <h1 class="name">vkqos</h1>
+        <h1 class="name blood-text">vkqos</h1>
         <div class="info">Возраст: <span class="highlight" id="age">1</span></div>
         <div class="info">Город: <span class="highlight question-mark">?</span></div>
         <div class="info">Хобби: <span class="highlight">программирование</span></div>
         <div class="info">Любимые исполнители: <span class="highlight">Sematary, Matey</span></div>
-        <div class="info">ТГ: <span class="highlight">@vkqos</span></div>
+        <div class="info">ТГ: <span class="highlight pulse">@vkqos</span></div>
+        <div class="info" style="margin-top: 20px; font-size: 0.9em; opacity: 0.7;">
+            <span class="highlight">Кровавая тема активирована</span>
+        </div>
     </div>
 
     <script>
+        // Показываем основной контент после загрузки
+        setTimeout(() => {
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('bioContainer').classList.add('visible');
+        }, 5000);
+
+        // Анимация возраста
         const ageElement = document.getElementById('age');
         let currentAge = 1;
         let increasing = true;
@@ -192,26 +353,25 @@
             ageElement.textContent = currentAge;
         }, 100);
 
+        // Создание частиц крови
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.querySelector('body');
             
-            function createParticle() {
+            function createBloodParticle() {
                 const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = Math.random() * 10 + 5 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.background = 'rgba(255, 255, 255, 0.5)';
-                particle.style.borderRadius = '50%';
+                particle.classList.add('blood-particle');
                 particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.top = '-20px';
-                particle.style.pointerEvents = 'none';
+                particle.style.top = '-10px';
+                particle.style.opacity = Math.random() * 0.7 + 0.3;
+                particle.style.width = Math.random() * 6 + 2 + 'px';
+                particle.style.height = particle.style.width;
                 container.appendChild(particle);
 
                 const animation = particle.animate([
-                    { transform: 'translateY(0px)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight + 20}px)`, opacity: 0 }
+                    { transform: 'translateY(0px) rotate(0deg)', opacity: particle.style.opacity },
+                    { transform: `translateY(${window.innerHeight + 20}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
                 ], {
-                    duration: Math.random() * 3000 + 2000,
+                    duration: Math.random() * 4000 + 3000,
                     easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
                 });
 
@@ -220,8 +380,25 @@
                 };
             }
 
-            setInterval(createParticle, 300);
+            setInterval(createBloodParticle, 500);
+            
+            // Создаем начальные частицы
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createBloodParticle, i * 100);
+            }
+        });
+
+        // Эффект при наведении на элементы
+        document.querySelectorAll('.info').forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.style.transform = 'scale(1.05)';
+                item.style.transition = 'transform 0.3s';
+            });
+            
+            item.addEventListener('mouseout', () => {
+                item.style.transform = 'scale(1)';
+            });
         });
     </script>
 </body>
-</html>
+    </html>
